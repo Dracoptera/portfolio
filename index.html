@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — QA Engineer & Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F5F4;      /* page background */
+    --ink: #1B2420;        /* primary text */
+    --muted: #5D6B65;      /* secondary text */
+    --line: #D8DEDB;       /* hairlines */
+    --pass: #17805B;       /* live apps */
+    --running: #B07B14;    /* beta / in progress */
+    --queued: #7A8580;     /* planned */
+    --card: #FBFCFB;       /* row background */
+  }
+
+  [data-theme="dark"] {
+    --paper: #141816;
+    --ink: #E8ECEA;
+    --muted: #8B968F;
+    --line: #2A322E;
+    --pass: #3DBB8C;
+    --running: #D9A43B;
+    --queued: #6E7873;
+    --card: #1B201E;
+  }
+
+  html { color-scheme: light; }
+  html[data-theme="dark"] { color-scheme: dark; }
+
+  body, .app, .contact a {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 48px 20px 64px;
+  }
+
+  .sheet { width: 100%; max-width: 560px; }
+
+  /* ---------- Header ---------- */
+  .runline {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 28px;
+    letter-spacing: 0.02em;
+  }
+  .runline .ok { color: var(--pass); }
+  .runline-right { display: flex; align-items: center; gap: 14px; }
+
+  .theme-toggle {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    letter-spacing: 0.02em;
+  }
+  .theme-toggle:hover, .theme-toggle:focus-visible { color: var(--ink); }
+  .theme-toggle:focus-visible { outline: 2px solid var(--pass); outline-offset: 2px; }
+
+  h1 {
+    font-family: 'IBM Plex Sans Condensed', sans-serif;
+    font-weight: 700;
+    font-size: clamp(34px, 8vw, 44px);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .role {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .role b { color: var(--ink); font-weight: 500; }
+
+  .bio {
+    margin-top: 18px;
+    color: var(--muted);
+    max-width: 46ch;
+  }
+
+  /* ---------- Suite ---------- */
+  .suite-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    margin: 40px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .suite-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+  .suite { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+
+  .app {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 140ms ease, transform 140ms ease;
+  }
+  .app:hover, .app:focus-visible { border-color: var(--ink); transform: translateX(3px); }
+  .app:focus-visible { outline: 2px solid var(--pass); outline-offset: 2px; }
+
+  .status {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    min-width: 68px;
+    text-align: center;
+  }
+  .status.pass    { color: var(--pass);    background: color-mix(in srgb, var(--pass) 10%, transparent);    border: 1px solid color-mix(in srgb, var(--pass) 35%, transparent); }
+  .status.running { color: var(--running); background: color-mix(in srgb, var(--running) 10%, transparent); border: 1px solid color-mix(in srgb, var(--running) 35%, transparent); }
+  .status.queued  { color: var(--queued);  background: color-mix(in srgb, var(--queued) 10%, transparent);  border: 1px solid color-mix(in srgb, var(--queued) 35%, transparent); }
+
+  .app-info { flex: 1; min-width: 0; }
+  .app-name { font-weight: 500; }
+  .app-emoji {
+    display: inline-block;
+    margin-right: 6px;
+    font-size: 15px;
+    /* keep emoji color rendering consistent across themes */
+    filter: saturate(0.9);
+  }
+  .app-desc {
+    font-size: 13.5px;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .arrow {
+    color: var(--muted);
+    font-family: 'IBM Plex Mono', monospace;
+    transition: transform 140ms ease, color 140ms ease;
+  }
+  .app:hover .arrow { transform: translateX(3px); color: var(--ink); }
+
+  .app.disabled { pointer-events: none; opacity: 0.65; }
+
+  /* ---------- Contact ---------- */
+  .contact { display: flex; flex-wrap: wrap; gap: 8px; }
+  .contact a {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 999px;
+    padding: 6px 14px;
+    transition: border-color 140ms ease;
+  }
+  .contact a:hover, .contact a:focus-visible { border-color: var(--ink); }
+  .contact a:focus-visible { outline: 2px solid var(--pass); outline-offset: 2px; }
+
+  footer {
+    margin-top: 44px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11.5px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app, .arrow, .contact a { transition: none; }
+    .app:hover { transform: none; }
+  }
+
+  @media (max-width: 420px) {
+    .app-desc { white-space: normal; }
+    .status { min-width: 60px; }
+  }
+</style>
+</head>
+<body>
+  <main class="sheet">
+
+    <!-- Top line: little "test run" header. Edit or delete freely. -->
+    <div class="runline">
+      <span>suite: personal · run #001</span>
+      <span class="runline-right">
+        <span class="ok">✓ all checks passing</span>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">☾ dark</button>
+      </span>
+    </div>
+
+    <header>
+      <!-- ✏️ EDIT: your name -->
+      <h1>Your Name</h1>
+      <p class="role"><b>QA Engineer</b> · builds apps with AI agents</p>
+      <!-- ✏️ EDIT: one or two sentences max. Keep it short — the apps do the talking. -->
+      <p class="bio">I break software for a living, and lately I've started building it too. These are my apps — tested by me, obviously.</p>
+    </header>
+
+    <section aria-label="Apps">
+      <h2 class="suite-label">Apps</h2>
+      <ul class="suite">
+
+        <!-- ✏️ EDIT: duplicate one <li> per app. Change status class + label:
+             pass = live · running = beta/in progress · queued = planned -->
+        <li>
+          <a class="app" href="https://michi-diario.netlify.app/" target="_blank" rel="noopener">
+            <span class="status pass">PASS</span>
+            <span class="app-info">
+              <span class="app-name"><span class="app-emoji" aria-hidden="true">🐱</span>Michi Diario</span><br>
+              <span class="app-desc">A daily diary for your cat's life and antics</span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="app" href="https://missubscripciones.netlify.app/" target="_blank" rel="noopener">
+            <span class="status pass">PASS</span>
+            <span class="app-info">
+              <span class="app-name"><span class="app-emoji" aria-hidden="true">💸</span>MisSubscripciones</span><br>
+              <span class="app-desc">Track subscriptions &amp; fixed expenses in UYU and USD</span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="app" href="https://playeritos-uruguay.netlify.app/" target="_blank" rel="noopener">
+            <span class="status pass">PASS</span>
+            <span class="app-info">
+              <span class="app-name"><span class="app-emoji" aria-hidden="true">🐦</span>Aves Playeras del Uruguay</span><br>
+              <span class="app-desc">A field guide to Uruguay's shorebirds</span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="app" href="https://tejetejon.netlify.app/" target="_blank" rel="noopener">
+            <span class="status pass">PASS</span>
+            <span class="app-info">
+              <span class="app-name"><span class="app-emoji" aria-hidden="true">🧶</span>Tejetejón</span><br>
+              <span class="app-desc">Handmade amigurumi crochet creations</span>
+            </span>
+            <span class="arrow">→</span>
+          </a>
+        </li>
+
+      </ul>
+    </section>
+
+    <section aria-label="Contact">
+      <h2 class="suite-label">Contact</h2>
+      <!-- ✏️ EDIT: your real links. Delete any you don't use. -->
+      <nav class="contact">
+        <a href="https://github.com/yourhandle" target="_blank" rel="noopener">github</a>
+        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener">linkedin</a>
+        <a href="mailto:you@example.com">email</a>
+      </nav>
+    </section>
+
+    <footer>
+      <span>© 2026 Your Name</span>
+      <span>0 known bugs on this page*</span>
+    </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const btn = document.getElementById('themeToggle');
+
+      // Load saved choice; fall back to system preference.
+      // try/catch keeps this working in sandboxed previews where storage is blocked.
+      let saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      apply(saved || (systemDark ? 'dark' : 'light'));
+
+      btn.addEventListener('click', function () {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        apply(next);
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      function apply(theme) {
+        if (theme === 'dark') {
+          root.setAttribute('data-theme', 'dark');
+          btn.textContent = '☀ light';
+        } else {
+          root.removeAttribute('data-theme');
+          btn.textContent = '☾ dark';
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
