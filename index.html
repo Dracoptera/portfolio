@@ -117,6 +117,36 @@
         font-size: clamp(34px, 5.5vw, 46px);
         margin: 0;
         line-height: 1;
+        min-height: 1.2em;
+      }
+
+      .typing-cursor {
+        display: inline-block;
+        width: 0.8ch;
+        margin-left: 6px;
+        background: var(--ink);
+        animation: blink 0.8s steps(2, end) infinite;
+      }
+
+      @keyframes blink {
+        from {
+          opacity: 1;
+        }
+        to {
+          opacity: 0;
+        }
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .fade-up.visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       .hero-copy {
@@ -179,6 +209,48 @@
       .runlink:hover,
       .runlink:focus-visible {
         border-color: var(--accent);
+      }
+
+      .tabs-nav {
+        margin-top: 24px;
+        display: flex;
+        justify-content: center;
+      }
+      .tab-list {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 6px;
+      }
+      .tab-button {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 13px;
+        border: none;
+        background: transparent;
+        color: var(--muted);
+        padding: 12px 16px;
+        border-radius: 999px;
+        cursor: pointer;
+      }
+      .tab-button.active,
+      .tab-button:hover,
+      .tab-button:focus-visible {
+        color: var(--ink);
+        background: var(--card);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+      .tab-button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+      .tab-panel {
+        display: none;
+      }
+      .tab-panel.active {
+        display: block;
       }
 
       .section {
@@ -452,8 +524,13 @@
       <section class="hero">
         <div class="hero-top">
           <div>
-            <p class="eyebrow">QA Engineer · Product Quality</p>
-            <h1>Alexa Brito</h1>
+            <p class="eyebrow">
+              QA Engineer 🐛 · AI-powered testing 🤖 · Nature lover 🦉
+            </p>
+            <h1 aria-label="Alexa Brito">
+              <span id="typedTitle" aria-hidden="true"></span>
+              <span class="typing-cursor" aria-hidden="true">|</span>
+            </h1>
             <p class="hero-copy">
               I help teams deliver reliable, user-friendly products with strong
               automation, thoughtful testing, and clean engineering.
@@ -468,236 +545,327 @@
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-card">
-          <p class="section-heading">Summary</p>
-          <p>
-            QA engineer with hands-on experience in end-to-end automation,
-            cross-browser testing, and product delivery. I partner with product
-            teams to reduce risk, improve stability, and ship polished web
-            experiences.
-          </p>
+      <section class="tabs-nav" aria-label="Section navigation">
+        <div class="tab-list" role="tablist">
+          <button
+            class="tab-button active"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-summary"
+            id="tab-summary"
+            data-tab="summary"
+          >
+            Summary
+          </button>
+          <button
+            class="tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-experience"
+            id="tab-experience"
+            data-tab="experience"
+          >
+            Experience
+          </button>
+          <button
+            class="tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-portfolio"
+            id="tab-portfolio"
+            data-tab="portfolio"
+          >
+            Portfolio
+          </button>
+          <button
+            class="tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-contact"
+            id="tab-contact"
+            data-tab="contact"
+          >
+            Contact
+          </button>
+          <button
+            class="tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-skills"
+            id="tab-skills"
+            data-tab="skills"
+          >
+            Skills
+          </button>
         </div>
       </section>
 
-      <section class="section">
-        <div class="section-card">
-          <p class="section-heading">Experience</p>
-          <div class="work-list">
-            <article class="work-entry">
-              <img
-                class="work-logo"
-                src="https://media.licdn.com/dms/image/v2/D4E0BAQH33dYU7yH9dw/company-logo_100_100/B4EZoB8NIeHEAQ-/0/1760969151356/halo_media_logo?e=1787788800&v=beta&t=bmNde6DBgXtC0YJO1vwxl6GTPCkIv0J6AkP6UXfjoQI"
-                alt="Halo Media logo"
-              />
-              <div class="work-meta">
-                <div class="work-role">QA Engineer</div>
-                <div class="work-company">
-                  <a
-                    href="https://www.linkedin.com/company/744415/"
-                    target="_blank"
-                    rel="noopener"
-                    >Halo Media LLC</a
-                  >
-                  · Full-time
-                </div>
-                <div class="work-dates">
-                  Nov 2022 - Present · + 3 yrs · Remote from Uruguay · Remote
-                </div>
-                <ul class="work-bullets">
-                  <li>
-                    Building and maintaining a Playwright automation framework
-                    from the ground up, establishing scalable test coverage and
-                    quality processes in collaboration with developers.
-                  </li>
-                  <li>
-                    Performing manual testing activities throughout the sprint,
-                    including test case creation and maintenance, test
-                    execution, exploratory testing, defect reporting, and
-                    regression validation.
-                  </li>lity initiatives and test strategy decisions.
-                  </li>
-                  <li>
-                    Leveraging GitHub Copilot to accelerate automation
-                    development and improve productivity.
-                  </li>
-                </ul>
-                <div class="tech-list">
-                  <strong>Test Automation:</strong> Web UI and API ·
-                  <strong>Frameworks:</strong> Playwright, Cypress, WebdriverIO,
-                  Cucumber · <strong>Languages:</strong> TypeScript ·
-                  <strong>Tools:</strong> Postman, Jira, ADO, GitHub Copilot
-                </div>
-              </div>
-            </article>
-
-            <article class="work-entry">
-              <img
-                class="work-logo"
-                src="https://media.licdn.com/dms/image/v2/D4D0BAQHupr1U3gIQKA/company-logo_100_100/company-logo_100_100/0/1719839010650/globant_logo?e=1787788800&v=beta&t=WY8kohkuJ_QOIrI9klkJP1dBZrsOCqC99mz4Nhw_n1A"
-                alt="Globant logo"
-              />
-              <div class="work-meta">
-                <div class="work-role">Test Automation Engineer</div>
-                <div class="work-company">
-                  <a
-                    href="https://www.globant.com/"
-                    target="_blank"
-                    rel="noopener"
-                    >Globant</a
-                  >
-                  · Full-time
-                </div>
-                <div class="work-dates">
-                  Aug 2020 - Nov 2022 · Montevideo, Uruguay
-                </div>
-                <ul class="work-bullets">
-                  <li>
-                    Contributed to Test Automation efforts for the Disney DTCI
-                    account (Sep 2022 - Nov 2022), developing and maintaining
-                    automation suites.
-                  </li>
-                  <li>
-                    Worked on the Openbank account (Oct 2021 - Aug 2022)
-                    performing Web and API automation, test case coding and
-                    maintenance.
-                  </li>
-                  <li>
-                    Implemented solutions using Selenium WebDriver, RestEASY,
-                    jUnit and IntelliJ; integrated with Atlassian Bamboo and
-                    Jira for CI and issue tracking.
-                  </li>
-                  <li>
-                    Previously held roles including Lead Game Tester and Game
-                    Quality Analyst, focusing on QC processes, team
-                    coordination, and manual testing workflows.
-                  </li>
-                </ul>
-                <div class="tech-list">
-                  <strong>Tools:</strong> Selenium WebDriver, RestEASY,
-                  IntelliJ, jUnit, Atlassian Bamboo, Jira ·
-                  <strong>Languages:</strong> Java ·
-                  <strong>Domains:</strong> Web, API, Videogames
-                </div>
-              </div>
-            </article>
+      <div class="tab-panels">
+        <section
+          class="section tab-panel active"
+          id="panel-summary"
+          role="tabpanel"
+          aria-labelledby="tab-summary"
+          data-tab="summary"
+        >
+          <div class="section-card">
+            <p class="section-heading">Summary</p>
+            <p>
+              QA engineer with hands-on experience in end-to-end automation,
+              cross-browser testing, and product delivery. I partner with
+              product teams to reduce risk, improve stability, and ship polished
+              web experiences.
+            </p>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="section">
-        <div class="section-heading">Portfolio</div>
-        <h2 class="section-title">Personal Projects created with Claude</h2>
-        <div class="project-grid">
-          <a
-            class="project-card"
-            href="https://michi-diario.netlify.app/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-meta">
-              <span class="project-badge live">Live</span>
-              <span>🐈</span>
+        <section
+          class="section tab-panel"
+          id="panel-experience"
+          role="tabpanel"
+          aria-labelledby="tab-experience"
+          data-tab="experience"
+        >
+          <div class="section-card">
+            <p class="section-heading">Experience</p>
+            <div class="work-list">
+              <article class="work-entry">
+                <img
+                  class="work-logo"
+                  src="https://media.licdn.com/dms/image/v2/D4E0BAQH33dYU7yH9dw/company-logo_100_100/B4EZoB8NIeHEAQ-/0/1760969151356/halo_media_logo?e=1787788800&v=beta&t=bmNde6DBgXtC0YJO1vwxl6GTPCkIv0J6AkP6UXfjoQI"
+                  alt="Halo Media logo"
+                />
+                <div class="work-meta">
+                  <div class="work-role">QA Engineer</div>
+                  <div class="work-company">
+                    <a
+                      href="https://www.linkedin.com/company/744415/"
+                      target="_blank"
+                      rel="noopener"
+                      >Halo Media LLC</a
+                    >
+                    · Full-time
+                  </div>
+                  <div class="work-dates">
+                    Nov 2022 - Present · + 3 yrs · Remote from Uruguay · Remote
+                  </div>
+                  <ul class="work-bullets">
+                    <li>
+                      Building and maintaining a Playwright automation framework
+                      from the ground up, establishing scalable test coverage
+                      and quality processes in collaboration with developers.
+                    </li>
+                    <li>
+                      Performing manual testing activities throughout the
+                      sprint, including test case creation and maintenance, test
+                      execution, exploratory testing, defect reporting, and
+                      regression validation.
+                    </li>
+                    <li>
+                      Leveraging GitHub Copilot to accelerate automation
+                      development and improve productivity.
+                    </li>
+                  </ul>
+                  <div class="tech-list">
+                    <strong>Test Automation:</strong> Web UI and API ·
+                    <strong>Frameworks:</strong> Playwright, Cypress,
+                    WebdriverIO, Cucumber ·
+                    <strong>Languages:</strong> TypeScript ·
+                    <strong>Tools:</strong> Postman, Jira, ADO, GitHub Copilot
+                  </div>
+                </div>
+              </article>
+
+              <article class="work-entry">
+                <img
+                  class="work-logo"
+                  src="https://media.licdn.com/dms/image/v2/D4D0BAQHupr1U3gIQKA/company-logo_100_100/company-logo_100_100/0/1719839010650/globant_logo?e=1787788800&v=beta&t=WY8kohkuJ_QOIrI9klkJP1dBZrsOCqC99mz4Nhw_n1A"
+                  alt="Globant logo"
+                />
+                <div class="work-meta">
+                  <div class="work-role">Test Automation Engineer</div>
+                  <div class="work-company">
+                    <a
+                      href="https://www.globant.com/"
+                      target="_blank"
+                      rel="noopener"
+                      >Globant</a
+                    >
+                    · Full-time
+                  </div>
+                  <div class="work-dates">
+                    Aug 2020 - Nov 2022 · Montevideo, Uruguay
+                  </div>
+                  <ul class="work-bullets">
+                    <li>
+                      Contributed to Test Automation efforts for the Disney DTCI
+                      account (Sep 2022 - Nov 2022), developing and maintaining
+                      automation suites.
+                    </li>
+                    <li>
+                      Worked on the Openbank account (Oct 2021 - Aug 2022)
+                      performing Web and API automation, test case coding and
+                      maintenance.
+                    </li>
+                    <li>
+                      Implemented solutions using Selenium WebDriver, RestEASY,
+                      jUnit and IntelliJ; integrated with Atlassian Bamboo and
+                      Jira for CI and issue tracking.
+                    </li>
+                    <li>
+                      Previously held roles including Lead Game Tester and Game
+                      Quality Analyst, focusing on QC processes, team
+                      coordination, and manual testing workflows.
+                    </li>
+                  </ul>
+                  <div class="tech-list">
+                    <strong>Tools:</strong> Selenium WebDriver, RestEASY,
+                    IntelliJ, jUnit, Atlassian Bamboo, Jira ·
+                    <strong>Languages:</strong> Java ·
+                    <strong>Domains:</strong> Web, API, Videogames
+                  </div>
+                </div>
+              </article>
             </div>
-            <h3 class="project-title">Michi Diario</h3>
-            <p class="project-desc">
-              A diary for your cat's health events, built with usability and
-              clean reporting in mind.
-            </p>
-          </a>
+          </div>
+        </section>
 
-          <a
-            class="project-card"
-            href="https://missubscripciones.netlify.app/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-meta">
-              <span class="project-badge live">Live</span>
-              <span>💶</span>
+        <section
+          class="section tab-panel"
+          id="panel-portfolio"
+          role="tabpanel"
+          aria-labelledby="tab-portfolio"
+          data-tab="portfolio"
+        >
+          <div class="section-card">
+            <p class="section-heading">Portfolio</p>
+            <h2 class="section-title">Personal Projects created with Claude</h2>
+            <div class="project-grid">
+              <a
+                class="project-card"
+                href="https://michi-diario.netlify.app/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="project-meta">
+                  <span class="project-badge live">Live</span>
+                  <span>🐈</span>
+                </div>
+                <h3 class="project-title">Michi Diario</h3>
+                <p class="project-desc">
+                  A diary for your cat's health events, built with usability and
+                  clean reporting in mind.
+                </p>
+              </a>
+
+              <a
+                class="project-card"
+                href="https://missubscripciones.netlify.app/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="project-meta">
+                  <span class="project-badge live">Live</span>
+                  <span>💶</span>
+                </div>
+                <h3 class="project-title">MisSubscripciones</h3>
+                <p class="project-desc">
+                  Track subscriptions and fixed expenses across UYU and USD with
+                  simple account visibility.
+                </p>
+              </a>
+
+              <a
+                class="project-card"
+                href="https://playeritos-uruguay.netlify.app/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="project-meta">
+                  <span class="project-badge live">Live</span>
+                  <span>🪶</span>
+                </div>
+                <h3 class="project-title">Aves Playeras del Uruguay</h3>
+                <p class="project-desc">
+                  A field guide to Uruguay's shorebirds, designed for fast
+                  lookups in the field.
+                </p>
+              </a>
+
+              <a
+                class="project-card"
+                href="https://tejetejon.netlify.app/"
+                target="_blank"
+                rel="noopener"
+              >
+                <div class="project-meta">
+                  <span class="project-badge live">Live</span>
+                  <span>🧶</span>
+                </div>
+                <h3 class="project-title">Tejetejón</h3>
+                <p class="project-desc">
+                  A gallery for handmade amigurumi crochet creations with a
+                  clean, approachable presentation.
+                </p>
+              </a>
             </div>
-            <h3 class="project-title">MisSubscripciones</h3>
-            <p class="project-desc">
-              Track subscriptions and fixed expenses across UYU and USD with
-              simple account visibility.
-            </p>
-          </a>
+          </div>
+        </section>
 
-          <a
-            class="project-card"
-            href="https://playeritos-uruguay.netlify.app/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-meta">
-              <span class="project-badge live">Live</span>
-              <span>🪶</span>
-            </div>
-            <h3 class="project-title">Aves Playeras del Uruguay</h3>
-            <p class="project-desc">
-              A field guide to Uruguay's shorebirds, designed for fast lookups
-              in the field.
-            </p>
-          </a>
+        <section
+          class="section tab-panel"
+          id="panel-contact"
+          role="tabpanel"
+          aria-labelledby="tab-contact"
+          data-tab="contact"
+        >
+          <div class="section-card">
+            <p class="section-heading">Contact</p>
 
-          <a
-            class="project-card"
-            href="https://tejetejon.netlify.app/"
-            target="_blank"
-            rel="noopener"
-          >
-            <div class="project-meta">
-              <span class="project-badge live">Live</span>
-              <span>🧶</span>
-            </div>
-            <h3 class="project-title">Tejetejón</h3>
-            <p class="project-desc">
-              A gallery for handmade amigurumi crochet creations with a clean,
-              approachable presentation.
-            </p>
-          </a>
-        </div>
-      </section>
+            <nav class="contact">
+              <a
+                href="https://github.com/dracoptera"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+              <a
+                href="https://linkedin.com/in/alexabv"
+                target="_blank"
+                rel="noopener"
+                >LinkedIn</a
+              >
+              <a href="mailto:dracoptera@example.com">Email</a>
+            </nav>
+          </div>
+        </section>
 
-      <section class="section">
-        <div class="section-card">
-          <p class="section-heading">Contact</p>
-
-          <nav class="contact">
-            <a
-              href="https://github.com/dracoptera"
-              target="_blank"
-              rel="noopener"
-              >GitHub</a
-            >
-            <a
-              href="https://linkedin.com/in/alexabv"
-              target="_blank"
-              rel="noopener"
-              >LinkedIn</a
-            >
-            <a href="mailto:dracoptera@example.com">Email</a>
-          </nav>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-card">
-          <p class="section-heading">Skills</p>
-          <ul class="card-list">
-            <li>
-              <strong>Testing:</strong> end-to-end, regression, automation, exploratory
-            </li>
-            <li>
-              <strong>Tools and Frameworks:</strong> Playwright, Copilot, Claude
-            </li>
-            <li>
-              <strong>Workflow:</strong> CI/CD, bug triage, documentation,
-              remote collaboration
-            </li>
-          </ul>
-        </div>
-      </section>
+        <section
+          class="section tab-panel"
+          id="panel-skills"
+          role="tabpanel"
+          aria-labelledby="tab-skills"
+          data-tab="skills"
+        >
+          <div class="section-card">
+            <p class="section-heading">Skills</p>
+            <ul class="card-list">
+              <li>
+                <strong>Testing:</strong> end-to-end, regression, automation,
+                exploratory
+              </li>
+              <li>
+                <strong>Tools and Frameworks:</strong> Playwright, Copilot,
+                Claude
+              </li>
+              <li>
+                <strong>Workflow:</strong> CI/CD, bug triage, documentation,
+                remote collaboration
+              </li>
+            </ul>
+          </div>
+        </section>
+      </div>
 
       <footer>
         <span>© 2026 Alexa Brito</span>
@@ -747,6 +915,69 @@
             root.removeAttribute("data-theme");
           }
         }
+
+        function typeTitle(text, element, interval = 80) {
+          let index = 0;
+          element.textContent = "";
+          const timer = setInterval(() => {
+            element.textContent += text[index++] || "";
+            if (index >= text.length) {
+              clearInterval(timer);
+            }
+          }, interval);
+        }
+
+        function revealContent() {
+          document
+            .querySelectorAll(".runline, .hero, .tabs-nav, .section, footer")
+            .forEach((el, i) => {
+              el.classList.add("fade-up");
+              requestAnimationFrame(() => {
+                el.style.transitionDelay = `${i * 80}ms`;
+                el.classList.add("visible");
+              });
+            });
+        }
+
+        function initTabs() {
+          const tabButtons = document.querySelectorAll(".tab-button");
+          const tabPanels = document.querySelectorAll(".tab-panel");
+          const savedTab = localStorage.getItem("activeTab") || "summary";
+
+          function selectTab(tab) {
+            tabButtons.forEach((btn) => {
+              const active = btn.dataset.tab === tab;
+              btn.classList.toggle("active", active);
+              btn.setAttribute("aria-selected", active ? "true" : "false");
+            });
+            tabPanels.forEach((panel) => {
+              panel.classList.toggle("active", panel.dataset.tab === tab);
+            });
+            try {
+              localStorage.setItem("activeTab", tab);
+            } catch (e) {}
+          }
+
+          tabButtons.forEach((btn) => {
+            btn.addEventListener("click", () => selectTab(btn.dataset.tab));
+          });
+
+          const initialTab = Array.from(tabButtons).some(
+            (btn) => btn.dataset.tab === savedTab,
+          )
+            ? savedTab
+            : "summary";
+          selectTab(initialTab);
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const titleEl = document.getElementById("typedTitle");
+          if (titleEl) {
+            setTimeout(() => typeTitle("Alexa Brito", titleEl), 240);
+          }
+          initTabs();
+          revealContent();
+        });
       })();
     </script>
   </body>
