@@ -226,6 +226,9 @@
         padding: 6px;
       }
       .tab-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5ch;
         font-family: "IBM Plex Mono", monospace;
         font-size: 13px;
         border: none;
@@ -234,6 +237,11 @@
         padding: 12px 16px;
         border-radius: 999px;
         cursor: pointer;
+      }
+      .tab-button svg {
+        width: 1rem;
+        height: 1rem;
+        fill: currentColor;
       }
       .tab-button.active,
       .tab-button:hover,
@@ -265,9 +273,22 @@
       }
 
       .section-heading {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5ch;
         font-size: 14px;
         text-transform: uppercase;
         color: var(--muted);
+      }
+
+      .section-heading svg {
+        width: 1rem;
+        height: 1rem;
+        fill: currentColor;
+      }
+
+      .section-title.section-gap {
+        margin-top: 24px;
       }
 
       .section-title {
@@ -279,6 +300,28 @@
         border: 1px solid var(--line);
         border-radius: 14px;
         padding: 16px;
+      }
+
+      .summary-row {
+        display: flex;
+        gap: 18px;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .section-avatar {
+        width: 128px;
+        height: 128px;
+        border-radius: 24px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+        background: var(--paper);
+        flex-shrink: 0;
+      }
+
+      .summary-row p {
+        margin: 0;
       }
 
       .section-grid {
@@ -303,6 +346,22 @@
       .card-list li {
         font-size: 14px;
         line-height: 1.5;
+      }
+
+      .card-list li a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 160ms ease,
+          border-color 160ms ease;
+      }
+
+      .card-list li a:hover,
+      .card-list li a:focus-visible {
+        color: var(--accent);
+        border-color: var(--accent);
+        outline: none;
       }
 
       .project-grid {
@@ -544,7 +603,8 @@
               <span class="typing-cursor" aria-hidden="true">|</span>
             </h1>
             <p class="hero-copy">
-              I help teams deliver reliable, user-friendly products with strong
+              I help teams deliver reliable, user-friendly products by blending
+              programming skills with AI-assisted app creation, strong
               automation, thoughtful testing, and clean engineering.
             </p>
           </div>
@@ -553,7 +613,7 @@
         <div class="hero-meta">
           <span class="hero-pill">Test Automation</span>
           <span class="hero-pill">Manual Testing</span>
-          <span class="hero-pill">AI Leverage</span>
+          <span class="hero-pill">AI-assisted Fullstack Developer</span>
         </div>
       </section>
 
@@ -567,6 +627,11 @@
             id="tab-summary"
             data-tab="summary"
           >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h6v2H8v-2z"
+              />
+            </svg>
             Summary
           </button>
           <button
@@ -577,6 +642,11 @@
             id="tab-experience"
             data-tab="experience"
           >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M6 7V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h3v14H3V7h3zm2-2v2h8V5H8z"
+              />
+            </svg>
             Experience
           </button>
           <button
@@ -587,7 +657,27 @@
             id="tab-portfolio"
             data-tab="portfolio"
           >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M4 4h16v16H4V4zm2 2v4h4V6H6zm0 6v6h4v-6H6zm6-6v4h6V6h-6zm0 6v6h6v-6h-6z"
+              />
+            </svg>
             Portfolio
+          </button>
+          <button
+            class="tab-button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-education"
+            id="tab-education"
+            data-tab="education"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M12 3 1 8l11 5 9-4.09V17h2V8L12 3zm0 2.18 7 3.18-7 3.18-7-3.18 7-3.18z"
+              />
+            </svg>
+            Education
           </button>
           <button
             class="tab-button"
@@ -597,6 +687,11 @@
             id="tab-skills"
             data-tab="skills"
           >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                d="M12 2l1.5 4.5h4.7L15 10l1.5 4.5L12 11.5 7.5 14.5 9 10 5.8 6.5h4.7L12 2z"
+              />
+            </svg>
             Skills
           </button>
         </div>
@@ -611,13 +706,26 @@
           data-tab="summary"
         >
           <div class="section-card">
-            <p class="section-heading">Summary</p>
-            <p>
-              QA engineer with hands-on experience in end-to-end automation,
-              cross-browser testing, and product delivery. I partner with
-              product teams to reduce risk, improve stability, and ship polished
-              web experiences.
+            <p class="section-heading">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M6 2h9l5 5v15a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zm9 1.5V7h4.5L15 3.5z"
+                />
+              </svg>
+              Summary
             </p>
+            <div class="summary-row">
+              <img
+                class="section-avatar"
+                src="./avataaars.png"
+                alt="Portrait of Alexa Brito"
+              />
+              <p>
+                🇺🇾 Uruguay-based QA engineer and self-taught learner with strong
+                experience in end-to-end automation, cross-browser testing, and
+                product delivery.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -629,7 +737,14 @@
           data-tab="experience"
         >
           <div class="section-card">
-            <p class="section-heading">Experience</p>
+            <p class="section-heading">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M20 6h-4V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm-10 0V4h4v2h-4z"
+                />
+              </svg>
+              Experience
+            </p>
             <div class="work-list">
               <article class="work-entry">
                 <img
@@ -740,7 +855,14 @@
           data-tab="portfolio"
         >
           <div class="section-card">
-            <p class="section-heading">Portfolio</p>
+            <p class="section-heading">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M4 5h16v14H4V5zm2 2v10h12V7H6zm1 2h10v2H7V9zm0 4h6v2H7v-2z"
+                />
+              </svg>
+              Portfolio
+            </p>
             <h2 class="section-title">Personal Projects created with Claude</h2>
             <div class="project-grid">
               <a
@@ -816,13 +938,191 @@
 
         <section
           class="section tab-panel"
+          id="panel-education"
+          role="tabpanel"
+          aria-labelledby="tab-education"
+          data-tab="education"
+        >
+          <div class="section-card">
+            <p class="section-heading">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M12 3 1 9l11 6 9-4.91V17h2V9L12 3zm0 8.18L4.5 9.5 12 6.5l7.5 3-7.5 3.68z"
+                />
+              </svg>
+              Education & Certificates
+            </p>
+            <h2 class="section-title">Formal Education</h2>
+            <ul class="card-list">
+              <li>
+                <strong
+                  >Universidad Virtual del Estado de Guanajuato (UVEG)
+                  🇲🇽</strong
+                >
+                · Software Development Engineering<br />
+                <small>Mar 2026 – Present</small>
+                <p>
+                  After five years in the IT field as a QA Engineer, I chose to
+                  formally strengthen my technical foundation with a software
+                  engineering degree.
+                </p>
+              </li>
+              <li>
+                <strong>Escuela Argentina de Naturalistas (EAN) 🇦🇷</strong> ·
+                Field Naturalist and Natural Heritage Interpreter<br />
+                <small>Aug 2026 – Present</small>
+                <p>
+                  As a nature lover, I’m studying conservation to help protect
+                  the natural world while bringing a technology-minded
+                  perspective to environmental stewardship.
+                </p>
+              </li>
+            </ul>
+            <h2 class="section-title section-gap">Certificates</h2>
+            <ul class="card-list">
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=4b9f8f4a"
+                    target="_blank"
+                    rel="noopener"
+                    >Cucumber with JavaScript</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Mar 2025 · Credential ID 4b9f8f4a</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=7ddc0ace"
+                    target="_blank"
+                    rel="noopener"
+                    >API Test Automation with Postman</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Mar 2022 · Credential ID 7ddc0ace</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=5636bbb2"
+                    target="_blank"
+                    rel="noopener"
+                    >Introduction to Playwright</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Nov 2023 · Credential ID 5636bbb2</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=1336e160"
+                    target="_blank"
+                    rel="noopener"
+                    >Introduction to Cypress</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Nov 2022 · Credential ID 1336e160</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=9ebb7092"
+                    target="_blank"
+                    rel="noopener"
+                    >Selenium WebDriver with Java</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Jul 2021 · Credential ID 9ebb7092</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=d5b8b6f8"
+                    target="_blank"
+                    rel="noopener"
+                    >Introduction to pytest</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Nov 2020 · Credential ID d5b8b6f8</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://testautomationu.applitools.com/certificate/?id=3e9a986d"
+                    target="_blank"
+                    rel="noopener"
+                    >Selenium WebDriver with Python</a
+                  ></strong
+                >
+                · TestAutomationU<br />
+                <small>Issued Sep 2020 · Credential ID 3e9a986d</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://www.coursera.org/account/accomplishments/verify/QGK34U639QET"
+                    target="_blank"
+                    rel="noopener"
+                    >Python Data Structures</a
+                  ></strong
+                >
+                · Coursera<br />
+                <small>Issued Sep 2020 · Credential ID QGK34U639QET</small>
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://coursera.org/share/4468beebf6b5c9bf7e59a17182d6813f"
+                    target="_blank"
+                    rel="noopener"
+                    >Programming Foundations with JavaScript, HTML and CSS</a
+                  ></strong
+                >
+                · Coursera<br />
+                <small
+                  >Issued May 2020 · Credential ID
+                  4468beebf6b5c9bf7e59a17182d6813f</small
+                >
+              </li>
+              <li>
+                <strong
+                  ><a
+                    href="https://certificates.mooc.fi/validate/39p64ni1vxl"
+                    target="_blank"
+                    rel="noopener"
+                    >Elements of AI</a
+                  ></strong
+                >
+                · University of Helsinki<br />
+                <small>Issued Jul 2019 · Credential ID 39p64ni1vxl</small>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="section tab-panel"
           id="panel-skills"
           role="tabpanel"
           aria-labelledby="tab-skills"
           data-tab="skills"
         >
           <div class="section-card">
-            <p class="section-heading">Skills</p>
+            <p class="section-heading">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M12 2l2.09 6.26L21 9l-5 3.64L17.18 21 12 17.77 6.82 21 8 12.64 3 9l6.91-0.74L12 2z"
+                />
+              </svg>
+              Skills
+            </p>
             <ul class="card-list">
               <li>
                 <strong>Testing:</strong> end-to-end, regression, automation,
@@ -835,6 +1135,10 @@
               <li>
                 <strong>Workflow:</strong> CI/CD, bug triage, documentation,
                 remote collaboration
+              </li>
+              <li>
+                <strong>Languages:</strong> Advanced Professional English,
+                Native Spanish
               </li>
             </ul>
           </div>
