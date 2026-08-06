@@ -1,0 +1,53 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  width: 100%;
+  max-width: 960px;
+  padding: 24px;
+}
+
+.resume {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.formCard {
+  background: #f9faf9;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+button {
+  background: #1b7a6f;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 6px;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+}

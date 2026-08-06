@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name — QA Engineer & Builder</title>
+    <title>Alexa Brito — QA Engineer & Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,25 +12,27 @@
     />
     <style>
       :root {
-        --paper: #f3f5f4; /* page background */
-        --ink: #1b2420; /* primary text */
-        --muted: #5d6b65; /* secondary text */
-        --line: #d8dedb; /* hairlines */
-        --pass: #17805b; /* live apps */
-        --running: #b07b14; /* beta / in progress */
-        --queued: #7a8580; /* planned */
-        --card: #fbfcfb; /* row background */
+        --paper: #eef1f0;
+        --ink: #111916;
+        --muted: #55615e;
+        --line: #d4dad6;
+        --accent: #1b7a6f;
+        --pass: #17805b;
+        --running: #b07b14;
+        --queued: #7a8580;
+        --card: #ffffff;
       }
 
       [data-theme="dark"] {
-        --paper: #141816;
-        --ink: #e8ecea;
+        --paper: #0f1413;
+        --ink: #edf1ef;
         --muted: #8b968f;
-        --line: #2a322e;
+        --line: #232b27;
+        --accent: #3dbb8c;
         --pass: #3dbb8c;
         --running: #d9a43b;
         --queued: #6e7873;
-        --card: #1b201e;
+        --card: #181d1b;
       }
 
       html {
@@ -40,224 +42,328 @@
         color-scheme: dark;
       }
 
-      body,
-      .app,
-      .contact a {
-        transition:
-          background-color 180ms ease,
-          color 180ms ease,
-          border-color 180ms ease;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
       }
 
       body {
-        background: var(--paper);
-        color: var(--ink);
-        font-family: "IBM Plex Sans", system-ui, sans-serif;
-        font-size: 16px;
-        line-height: 1.55;
+        margin: 0;
         min-height: 100vh;
+        font-family: "IBM Plex Sans", system-ui, sans-serif;
+        font-size: 15.5px;
+        line-height: 1.55;
+        color: var(--ink);
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(27, 122, 111, 0.1),
+            transparent 35%
+          ),
+          var(--paper);
         display: flex;
         justify-content: center;
-        padding: 48px 20px 64px;
+        padding: 28px 16px 40px;
       }
 
       .sheet {
-        width: 100%;
-        max-width: 560px;
+        width: min(100%, 760px);
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 20px 40px rgba(17, 25, 22, 0.08);
       }
 
-      /* ---------- Header ---------- */
       .runline {
         font-family: "IBM Plex Mono", monospace;
-        font-size: 12px;
+        font-size: 11px;
         color: var(--muted);
         display: flex;
         justify-content: space-between;
+        padding-bottom: 6px;
         border-bottom: 1px solid var(--line);
-        padding-bottom: 10px;
-        margin-bottom: 28px;
-        letter-spacing: 0.02em;
+        margin-bottom: 20px;
       }
       .runline .ok {
         color: var(--pass);
       }
-      .runline-right {
+
+      .hero {
+        display: grid;
+        gap: 16px;
+      }
+
+      .hero-top {
         display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .eyebrow {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .hero h1 {
+        font-family: "IBM Plex Sans Condensed", sans-serif;
+        font-size: clamp(34px, 5.5vw, 46px);
+        margin: 0;
+        line-height: 1;
+      }
+
+      .hero-copy {
+        margin-top: 12px;
+        max-width: 54ch;
+        color: var(--muted);
+      }
+
+      .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .hero-pill {
+        display: inline-flex;
         align-items: center;
-        gap: 14px;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: var(--paper);
       }
 
       .theme-toggle {
         font-family: "IBM Plex Mono", monospace;
         font-size: 12px;
         color: var(--muted);
-        background: none;
-        border: none;
+        background: transparent;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 10px 16px;
         cursor: pointer;
-        padding: 0;
-        letter-spacing: 0.02em;
       }
       .theme-toggle:hover,
       .theme-toggle:focus-visible {
         color: var(--ink);
+        border-color: var(--accent);
       }
       .theme-toggle:focus-visible {
-        outline: 2px solid var(--pass);
+        outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
-
-      h1 {
-        font-family: "IBM Plex Sans Condensed", sans-serif;
-        font-weight: 700;
-        font-size: clamp(34px, 8vw, 44px);
-        line-height: 1.05;
-        letter-spacing: -0.01em;
-      }
-
-      .role {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 13px;
-        color: var(--muted);
-        margin-top: 10px;
-      }
-      .role b {
-        color: var(--ink);
-        font-weight: 500;
-      }
-
-      .bio {
-        margin-top: 18px;
-        color: var(--muted);
-        max-width: 46ch;
-      }
-
-      /* ---------- Suite ---------- */
-      .suite-label {
+      .runlink {
         font-family: "IBM Plex Mono", monospace;
         font-size: 12px;
+        color: var(--ink);
+        text-decoration: none;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        padding: 8px 12px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .runlink:hover,
+      .runlink:focus-visible {
+        border-color: var(--accent);
+      }
+
+      .section {
+        margin-top: 24px;
+      }
+
+      .section-heading,
+      .section-title {
+        font-family: "IBM Plex Sans Condensed", sans-serif;
+        letter-spacing: -0.02em;
+        margin: 0 0 12px;
+      }
+
+      .section-heading {
+        font-size: 14px;
         text-transform: uppercase;
-        letter-spacing: 0.12em;
         color: var(--muted);
-        margin: 40px 0 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      .suite-label::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: var(--line);
       }
 
-      .suite {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+      .section-title {
+        font-size: 24px;
       }
 
-      .app {
-        display: flex;
-        align-items: center;
-        gap: 14px;
+      .section-card {
         background: var(--card);
         border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 14px 16px;
+        border-radius: 14px;
+        padding: 16px;
+      }
+
+      .section-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .card-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+
+      .card-list li {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .project-grid {
+        display: grid;
+        gap: 14px;
+      }
+
+      .project-card {
+        display: block;
         text-decoration: none;
         color: inherit;
-        transition:
-          border-color 140ms ease,
-          transform 140ms ease;
-      }
-      .app:hover,
-      .app:focus-visible {
-        border-color: var(--ink);
-        transform: translateX(3px);
-      }
-      .app:focus-visible {
-        outline: 2px solid var(--pass);
-        outline-offset: 2px;
-      }
-
-      .status {
-        font-family: "IBM Plex Mono", monospace;
-        font-size: 11px;
-        font-weight: 500;
-        letter-spacing: 0.06em;
-        padding: 3px 8px;
-        border-radius: 4px;
-        flex-shrink: 0;
-        min-width: 68px;
-        text-align: center;
-      }
-      .status.pass {
-        color: var(--pass);
-        background: color-mix(in srgb, var(--pass) 10%, transparent);
-        border: 1px solid color-mix(in srgb, var(--pass) 35%, transparent);
-      }
-      .status.running {
-        color: var(--running);
-        background: color-mix(in srgb, var(--running) 10%, transparent);
-        border: 1px solid color-mix(in srgb, var(--running) 35%, transparent);
-      }
-      .status.queued {
-        color: var(--queued);
-        background: color-mix(in srgb, var(--queued) 10%, transparent);
-        border: 1px solid color-mix(in srgb, var(--queued) 35%, transparent);
-      }
-
-      .app-info {
-        flex: 1;
-        min-width: 0;
-      }
-      .app-name {
-        font-weight: 500;
-      }
-      .app-emoji {
-        display: inline-block;
-        margin-right: 6px;
-        font-size: 15px;
-        /* keep emoji color rendering consistent across themes */
-        filter: saturate(0.9);
-      }
-      .app-desc {
-        font-size: 13.5px;
-        color: var(--muted);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .arrow {
-        color: var(--muted);
-        font-family: "IBM Plex Mono", monospace;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 14px;
         transition:
           transform 140ms ease,
-          color 140ms ease;
+          border-color 140ms ease,
+          box-shadow 140ms ease;
       }
-      .app:hover .arrow {
-        transform: translateX(3px);
+      .project-card:hover,
+      .project-card:focus-visible {
+        transform: translateY(-2px);
+        border-color: var(--accent);
+        box-shadow: 0 18px 36px rgba(17, 25, 22, 0.08);
+      }
+
+      .project-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+
+      .project-title {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 0 6px;
+      }
+
+      .project-desc {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .project-badge {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 999px;
+      }
+      .project-badge.live {
+        color: var(--pass);
+        background: color-mix(in srgb, var(--pass) 15%, transparent);
+        border: 1px solid color-mix(in srgb, var(--pass) 35%, transparent);
+      }
+
+      /* Work experience */
+      .work-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .work-entry {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .work-logo {
+        width: 56px;
+        height: 56px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--paper);
+      }
+
+      .work-meta {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .work-role {
+        font-weight: 700;
         color: var(--ink);
+        margin-bottom: 4px;
       }
 
-      .app.disabled {
-        pointer-events: none;
-        opacity: 0.65;
+      .work-company {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 12.5px;
+        color: var(--muted);
+        margin-bottom: 6px;
       }
 
-      /* ---------- Contact ---------- */
+      .work-dates {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+
+      .work-bullets {
+        margin: 0 0 8px 16px;
+        padding: 0;
+      }
+
+      .work-bullets li {
+        margin-bottom: 6px;
+      }
+
+      .tech-list {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .contact-copy {
+        margin: 0 0 12px;
+        color: var(--muted);
+      }
+
       .contact {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 10px;
       }
       .contact a {
         font-family: "IBM Plex Mono", monospace;
@@ -265,61 +371,77 @@
         color: var(--ink);
         text-decoration: none;
         border: 1px solid var(--line);
-        background: var(--card);
+        background: var(--paper);
         border-radius: 999px;
-        padding: 6px 14px;
-        transition: border-color 140ms ease;
+        padding: 8px 12px;
       }
       .contact a:hover,
       .contact a:focus-visible {
-        border-color: var(--ink);
+        border-color: var(--accent);
       }
       .contact a:focus-visible {
-        outline: 2px solid var(--pass);
+        outline: 2px solid var(--accent);
         outline-offset: 2px;
       }
 
       footer {
-        margin-top: 44px;
-        padding-top: 14px;
+        margin-top: 32px;
+        padding-top: 12px;
         border-top: 1px solid var(--line);
         font-family: "IBM Plex Mono", monospace;
         font-size: 11.5px;
         color: var(--muted);
         display: flex;
         justify-content: space-between;
-        gap: 12px;
         flex-wrap: wrap;
+        gap: 10px;
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .project-card,
+        .project-card:hover,
         .app,
         .arrow,
         .contact a {
           transition: none;
         }
-        .app:hover {
+        .project-card:hover {
           transform: none;
         }
       }
 
-      @media (max-width: 420px) {
-        .app-desc {
-          white-space: normal;
+      @media (max-width: 760px) {
+        body {
+          padding: 32px 16px 50px;
         }
-        .status {
-          min-width: 60px;
+        .sheet {
+          padding: 28px;
+        }
+        .grid-2 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .hero-top {
+          align-items: stretch;
+        }
+        .project-meta {
+          flex-direction: column;
+          align-items: flex-start;
         }
       }
     </style>
   </head>
   <body>
     <main class="sheet">
-      <!-- Top line: little "test run" header. Edit or delete freely. -->
       <div class="runline">
-        <span>suite: personal · run #001</span>
+        <span>resume + portfolio · Alexa Brito</span>
         <span class="runline-right">
-          <span class="ok">✓ all checks passing</span>
+          <span class="ok">✓ polished and ready</span>
+          <a class="runlink" href="./resume-app" target="_blank" rel="noopener"
+            >Open resume app</a
+          >
           <button
             class="theme-toggle"
             id="themeToggle"
@@ -330,122 +452,274 @@
         </span>
       </div>
 
-      <header>
-        <h1>Alexa Brito</h1>
-        <p class="role"><b>QA Engineer</b> · builds apps with AI agents</p>
-        <!-- ✏️ EDIT: one or two sentences max. Keep it short — the apps do the talking. -->
-        <p class="bio">
-          I break software for a living, and lately I've started building it
-          too. These are my apps — tested by me, obviously.
-        </p>
-      </header>
+      <section class="hero">
+        <div class="hero-top">
+          <div>
+            <p class="eyebrow">QA Engineer · Product Quality</p>
+            <h1>Alexa Brito</h1>
+            <p class="hero-copy">
+              I help teams deliver reliable, user-friendly products with strong
+              automation, thoughtful testing, and clean engineering.
+            </p>
+          </div>
+        </div>
 
-      <section aria-label="Apps">
-        <h2 class="suite-label">Apps</h2>
-        <ul class="suite">
-          <!-- ✏️ EDIT: duplicate one <li> per app. Change status class + label:
-             pass = live · running = beta/in progress · queued = planned -->
-          <li>
-            <a
-              class="app"
-              href="https://michi-diario.netlify.app/"
-              target="_blank"
-              rel="noopener"
-            >
-              <span class="status pass">PASS</span>
-              <span class="app-info">
-                <span class="app-name"
-                  ><span class="app-emoji" aria-hidden="true">🐱</span>Michi
-                  Diario</span
-                ><br />
-                <span class="app-desc"
-                  >A diary for your cat's health events</span
-                >
-              </span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              class="app"
-              href="https://missubscripciones.netlify.app/"
-              target="_blank"
-              rel="noopener"
-            >
-              <span class="status pass">PASS</span>
-              <span class="app-info">
-                <span class="app-name"
-                  ><span class="app-emoji" aria-hidden="true">💸</span
-                  >MisSubscripciones</span
-                ><br />
-                <span class="app-desc"
-                  >Track subscriptions &amp; fixed expenses in UYU and USD</span
-                >
-              </span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              class="app"
-              href="https://playeritos-uruguay.netlify.app/"
-              target="_blank"
-              rel="noopener"
-            >
-              <span class="status pass">PASS</span>
-              <span class="app-info">
-                <span class="app-name"
-                  ><span class="app-emoji" aria-hidden="true">🐦</span>Aves
-                  Playeras del Uruguay</span
-                ><br />
-                <span class="app-desc"
-                  >A field guide to Uruguay's shorebirds</span
-                >
-              </span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              class="app"
-              href="https://tejetejon.netlify.app/"
-              target="_blank"
-              rel="noopener"
-            >
-              <span class="status pass">PASS</span>
-              <span class="app-info">
-                <span class="app-name"
-                  ><span class="app-emoji" aria-hidden="true">🧶</span
-                  >Tejetejón</span
-                ><br />
-                <span class="app-desc"
-                  >Gallery for my handmade amigurumi crochet creations</span
-                >
-              </span>
-              <span class="arrow">→</span>
-            </a>
-          </li>
-        </ul>
+        <div class="hero-meta">
+          <span class="hero-pill">Web QA & automation</span>
+          <span class="hero-pill">Accessible releases</span>
+          <span class="hero-pill">CI/CD support</span>
+        </div>
       </section>
 
-      <section aria-label="Contact">
-        <h2 class="suite-label">Contact</h2>
-        <!-- ✏️ EDIT: your real links. Delete any you don't use. -->
-        <nav class="contact">
-          <a href="https://github.com/dracoptera" target="_blank" rel="noopener"
-            >github</a
-          >
+      <section class="section">
+        <div class="section-card">
+          <p class="section-heading">Summary</p>
+          <p>
+            QA engineer with hands-on experience in end-to-end automation,
+            cross-browser testing, and product delivery. I partner with product
+            teams to reduce risk, improve stability, and ship polished web
+            experiences.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-card">
+          <p class="section-heading">Experience</p>
+          <div class="work-list">
+            <article class="work-entry">
+              <img
+                class="work-logo"
+                src="https://media.licdn.com/dms/image/v2/D4E0BAQH33dYU7yH9dw/company-logo_100_100/B4EZoB8NIeHEAQ-/0/1760969151356/halo_media_logo?e=1787788800&v=beta&t=bmNde6DBgXtC0YJO1vwxl6GTPCkIv0J6AkP6UXfjoQI"
+                alt="Halo Media logo"
+              />
+              <div class="work-meta">
+                <div class="work-role">QA Engineer</div>
+                <div class="work-company">
+                  <a
+                    href="https://www.linkedin.com/company/744415/"
+                    target="_blank"
+                    rel="noopener"
+                    >Halo Media LLC</a
+                  >
+                  · Full-time
+                </div>
+                <div class="work-dates">
+                  Nov 2022 - Present · 3 yrs 10 mos · Montevideo, Uruguay ·
+                  Remote
+                </div>
+                <ul class="work-bullets">
+                  <li>
+                    Building and maintaining a Playwright automation framework
+                    from the ground up, establishing scalable test coverage and
+                    quality processes in collaboration with developers.
+                  </li>
+                  <li>
+                    Designing, developing, and executing automated Web UI and
+                    API tests to improve regression coverage and release
+                    confidence.
+                  </li>
+                  <li>
+                    Performing manual testing activities throughout the sprint,
+                    including test case creation and maintenance, test
+                    execution, exploratory testing, defect reporting, and
+                    regression validation.
+                  </li>
+                  <li>
+                    Tracking and improving automation coverage metrics, helping
+                    drive quality initiatives and test strategy decisions.
+                  </li>
+                  <li>
+                    Collaborating with cross-functional teams to identify risks
+                    early and ensure high-quality feature delivery.
+                  </li>
+                  <li>
+                    Leveraging GitHub Copilot to accelerate automation
+                    development and improve productivity.
+                  </li>
+                </ul>
+                <div class="tech-list">
+                  <strong>Test Automation:</strong> Web UI and API ·
+                  <strong>Frameworks:</strong> Playwright, Cypress, WebdriverIO,
+                  Cucumber · <strong>Languages:</strong> TypeScript ·
+                  <strong>Tools:</strong> Postman, Jira, GitHub Copilot
+                </div>
+              </div>
+            </article>
+
+            <article class="work-entry">
+              <img
+                class="work-logo"
+                src="https://media.licdn.com/dms/image/v2/D4D0BAQHupr1U3gIQKA/company-logo_100_100/company-logo_100_100/0/1719839010650/globant_logo?e=1787788800&v=beta&t=WY8kohkuJ_QOIrI9klkJP1dBZrsOCqC99mz4Nhw_n1A"
+                alt="Globant logo"
+              />
+              <div class="work-meta">
+                <div class="work-role">Test Automation Engineer</div>
+                <div class="work-company">
+                  <a
+                    href="https://www.globant.com/"
+                    target="_blank"
+                    rel="noopener"
+                    >Globant</a
+                  >
+                  · Full-time
+                </div>
+                <div class="work-dates">
+                  Oct 2021 - Nov 2022 · Montevideo, Uruguay
+                </div>
+                <ul class="work-bullets">
+                  <li>
+                    Contributed to Test Automation efforts for the Disney DTCI
+                    account (Sep 2022 - Nov 2022), developing and maintaining
+                    automation suites.
+                  </li>
+                  <li>
+                    Worked on the Openbank account (Oct 2021 - Aug 2022)
+                    performing Web and API automation, test case coding and
+                    maintenance.
+                  </li>
+                  <li>
+                    Implemented solutions using Selenium WebDriver, RestEASY,
+                    jUnit and IntelliJ; integrated with Atlassian Bamboo and
+                    Jira for CI and issue tracking.
+                  </li>
+                  <li>
+                    Previously held roles including Lead Game Tester and Game
+                    Quality Analyst, focusing on QC processes, team
+                    coordination, and manual testing workflows.
+                  </li>
+                </ul>
+                <div class="tech-list">
+                  <strong>Tools:</strong> Selenium WebDriver, RestEASY,
+                  IntelliJ, jUnit, Atlassian Bamboo, Jira ·
+                  <strong>Languages:</strong> Java ·
+                  <strong>Domains:</strong> Web, API, Games
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">Portfolio</div>
+        <h2 class="section-title">Selected projects</h2>
+        <div class="project-grid">
           <a
-            href="https://linkedin.com/in/alexabv"
+            class="project-card"
+            href="https://michi-diario.netlify.app/"
             target="_blank"
             rel="noopener"
-            >linkedin</a
           >
-          <a href="mailto:dracoptera@example.com">email</a>
-        </nav>
+            <div class="project-meta">
+              <span class="project-badge live">Live</span>
+              <span>Michi Diario</span>
+            </div>
+            <h3 class="project-title">Michi Diario</h3>
+            <p class="project-desc">
+              A diary for your cat's health events, built with usability and
+              clean reporting in mind.
+            </p>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://missubscripciones.netlify.app/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-meta">
+              <span class="project-badge live">Live</span>
+              <span>MisSubscripciones</span>
+            </div>
+            <h3 class="project-title">MisSubscripciones</h3>
+            <p class="project-desc">
+              Track subscriptions and fixed expenses across UYU and USD with
+              simple account visibility.
+            </p>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://playeritos-uruguay.netlify.app/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-meta">
+              <span class="project-badge live">Live</span>
+              <span>Aves Playeras</span>
+            </div>
+            <h3 class="project-title">Aves Playeras del Uruguay</h3>
+            <p class="project-desc">
+              A field guide to Uruguay's shorebirds, designed for fast lookups
+              in the field.
+            </p>
+          </a>
+
+          <a
+            class="project-card"
+            href="https://tejetejon.netlify.app/"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="project-meta">
+              <span class="project-badge live">Live</span>
+              <span>Tejetejón</span>
+            </div>
+            <h3 class="project-title">Tejetejón</h3>
+            <p class="project-desc">
+              A gallery for handmade amigurumi crochet creations with a clean,
+              approachable presentation.
+            </p>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-card">
+          <p class="section-heading">Contact</p>
+          <p class="contact-copy">
+            Available for contract or full-time QA and product quality roles.
+            Let’s connect and ship better work together.
+          </p>
+          <nav class="contact">
+            <a
+              href="https://github.com/dracoptera"
+              target="_blank"
+              rel="noopener"
+              >GitHub</a
+            >
+            <a
+              href="https://linkedin.com/in/alexabv"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
+            <a href="mailto:dracoptera@example.com">Email</a>
+          </nav>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-card">
+          <p class="section-heading">Skills</p>
+          <ul class="card-list">
+            <li>
+              <strong>Testing:</strong> end-to-end, regression, accessibility,
+              performance
+            </li>
+            <li>
+              <strong>Tools:</strong> Cypress, Playwright, Selenium, Jest, Git
+            </li>
+            <li>
+              <strong>Web:</strong> HTML, CSS, JavaScript, responsive layout
+            </li>
+            <li>
+              <strong>Workflow:</strong> CI/CD, bug triage, documentation,
+              remote collaboration
+            </li>
+          </ul>
+        </div>
       </section>
 
       <footer>
@@ -457,7 +731,7 @@
     <script>
       (function () {
         const root = document.documentElement;
-        const btn = document.getElementById("themeToggle");
+        const buttons = document.querySelectorAll(".theme-toggle");
 
         // Load saved choice; fall back to system preference.
         // try/catch keeps this working in sandboxed previews where storage is blocked.
@@ -470,22 +744,30 @@
         ).matches;
         apply(saved || (systemDark ? "dark" : "light"));
 
-        btn.addEventListener("click", function () {
-          const next =
-            root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-          apply(next);
-          try {
-            localStorage.setItem("theme", next);
-          } catch (e) {}
+        buttons.forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const next =
+              root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            apply(next);
+            try {
+              localStorage.setItem("theme", next);
+            } catch (e) {}
+          });
         });
 
         function apply(theme) {
+          buttons.forEach((btn) => {
+            if (theme === "dark") {
+              btn.textContent = "☀ light";
+            } else {
+              btn.textContent = "☾ dark";
+            }
+          });
+
           if (theme === "dark") {
             root.setAttribute("data-theme", "dark");
-            btn.textContent = "☀ light";
           } else {
             root.removeAttribute("data-theme");
-            btn.textContent = "☾ dark";
           }
         }
       })();
